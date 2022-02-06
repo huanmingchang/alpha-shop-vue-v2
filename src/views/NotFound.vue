@@ -7,3 +7,10 @@ export default {
   name: 'NotFound',
 }
 </script>
+
+<style lang="scss" scoped>
+h1 {
+  text-align: center;
+  margin: 10rem auto;
+}
+</style>
