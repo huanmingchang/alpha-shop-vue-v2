@@ -22,6 +22,7 @@
             <div class="cart__container__wrapper__product__info__modifier">
               <div
                 class="cart__container__wrapper__product__info__modifier--minus minus"
+                @click.stop.prevent="minusQty(product.id)"
               ></div>
               <div
                 class="cart__container__wrapper__product__info__modifier--qty qty"
@@ -30,6 +31,7 @@
               </div>
               <div
                 class="cart__container__wrapper__product__info__modifier--plus plus"
+                @click.stop.prevent="addQty(product.id)"
               ></div>
             </div>
           </div>
@@ -84,6 +86,26 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    addQty(productId) {
+      this.carts.map((product) => {
+        if (product.id === productId) {
+          product.qty += 1
+        }
+      })
+    },
+    minusQty(productId) {
+      this.carts.map((product) => {
+        if (product.id === productId) {
+          product.qty -= 1
+        }
+
+        if (product.qty <= 0) {
+          product.qty = 0
+        }
+      })
+    },
   },
   filters: {
     addComma: function (value) {
