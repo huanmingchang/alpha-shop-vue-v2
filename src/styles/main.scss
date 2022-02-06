@@ -1,0 +1,52 @@
+// @use 'nav';
+// @use 'stepper';
+// @use 'form';
+// @use 'cart';
+// @use 'button';
+// @use 'footer';
+
+// @use 'mixin';
+// @import 'include-media';
+
+// .app {
+//   background: var(--background);
+// }
+
+// .main {
+//   min-width: 320px;
+//   margin: 1rem 1rem 1rem;
+//   @include media('>=small') {
+//     margin: 1rem 2rem 1rem;
+//   }
+//   @include media('>=medium') {
+//     margin: 1rem 2rem 1rem;
+//     display: grid;
+//     grid-template-columns: repeat(12, 1fr);
+//     grid-template-rows: auto;
+//     grid-template-areas:
+//       'main-title main-title . . . . . . . . . .'
+//       'stepper stepper stepper stepper stepper stepper . cart cart cart cart cart'
+//       'form-panel form-panel form-panel form-panel form-panel form-panel . cart cart cart cart cart'
+//       'button button button button button button . cart cart cart cart cart';
+//   }
+
+//   @include media('>=large') {
+//     margin: 5rem 3rem 7.75rem;
+//   }
+//   @include media('>=extra-large') {
+//     margin: 5rem 4rem 7.75rem;
+//   }
+//   @include media('>=desktop') {
+//     margin: 5rem auto 7.75rem;
+//     max-width: calc(1440px - 165px - 165px);
+//   }
+
+//   &__title {
+//     grid-area: main-title;
+//     display: none;
+//     @include media('>=medium') {
+//       display: block;
+//       @include mixin.fontStyles(2rem, 700, 2.375rem, var(--font-color1));
+//     }
+//   }
+// }
