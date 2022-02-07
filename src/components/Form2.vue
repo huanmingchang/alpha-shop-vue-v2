@@ -1,0 +1,92 @@
+<template>
+  <div class="form-panel__container__form__form-part">
+    <div class="form-panel__container__form__form-part--form-title">
+      運送方式
+    </div>
+    <div class="form-panel__container__form__form-part__forms step-2">
+      <div
+        id="standard-delivery"
+        class="form-panel__container__form__form-part__forms__radio-wrapper checked standard"
+        data-delivery="standard"
+      >
+        <input
+          type="radio"
+          name="delivery"
+          id="standard"
+          value="standard"
+          class="form-panel__container__form__form-part__forms__radio-wrapper--radio-btn standard"
+          checked
+        />
+        <label
+          for="standard"
+          class="form-panel__container__form__form-part__forms__radio-wrapper__container standard"
+        >
+          <div
+            class="form-panel__container__form__form-part__forms__radio-wrapper__container__details standard"
+          >
+            <div
+              class="form-panel__container__form__form-part__forms__radio-wrapper__container__details--option standard"
+              data-standard
+            >
+              標準運送
+            </div>
+            <div
+              class="form-panel__container__form__form-part__forms__radio-wrapper__container__details--freight standard"
+            >
+              免費
+            </div>
+          </div>
+          <div
+            class="form-panel__container__form__form-part__forms__radio-wrapper__container__time standard"
+          >
+            約 3~7 個工作天
+          </div>
+        </label>
+      </div>
+      <div
+        id="dhl-delivery"
+        class="form-panel__container__form__form-part__forms__radio-wrapper dhl"
+        data-delivery="dhl"
+      >
+        <input
+          type="radio"
+          name="delivery"
+          id="dhl"
+          value="dhl"
+          class="form-panel__container__form__form-part__forms__radio-wrapper--radio-btn dhl"
+        />
+        <label
+          for="dhl"
+          class="form-panel__container__form__form-part__forms__radio-wrapper__container dhl"
+        >
+          <div
+            class="form-panel__container__form__form-part__forms__radio-wrapper__container__details dhl"
+          >
+            <div
+              class="form-panel__container__form__form-part__forms__radio-wrapper__container__details--option dhl"
+              data-dhl
+            >
+              DHL 貨運
+            </div>
+            <div
+              class="form-panel__container__form__form-part__forms__radio-wrapper__container__details--freight dhl"
+            >
+              $500
+            </div>
+          </div>
+          <div
+            class="form-panel__container__form__form-part__forms__radio-wrapper__container__time dhl"
+          >
+            48 小時內送達
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Form2',
+}
+</script>
