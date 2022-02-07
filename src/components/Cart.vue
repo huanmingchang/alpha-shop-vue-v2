@@ -45,7 +45,7 @@
         <div class="cart__container__wrapper__freight">
           <div class="cart__container__wrapper__freight--item">運費</div>
           <div class="cart__container__wrapper__freight--amount freight">
-            ${freightDisplay}
+            {{ deliveryCost | filterFreightCost }}
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
         <div class="cart__container__wrapper__total">
           <div class="cart__container__wrapper__total--item">小計</div>
           <div class="cart__container__wrapper__total--amount total-amount">
-            $
+            {{ calculateTotal | addComma }}
           </div>
         </div>
       </div>
@@ -67,6 +67,12 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default {
   name: 'Cart',
+  props: {
+    deliveryCost: {
+      type: [String, Number],
+      required: true,
+    },
+  },
   data() {
     return {
       carts: [
@@ -109,10 +115,24 @@ export default {
   },
   filters: {
     addComma: function (value) {
-      if (!value) return '-'
+      if (!value) return '0'
       return (
         '$' + value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
       )
+    },
+    filterFreightCost: function (value) {
+      return value === 0
+        ? '免費'
+        : '$' + value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
+    },
+  },
+  computed: {
+    calculateTotal: function () {
+      const total = this.carts.reduce((accu, curr) => {
+        return accu.price * accu.qty + curr.price * curr.qty
+      })
+
+      return this.deliveryCost + total
     },
   },
 }

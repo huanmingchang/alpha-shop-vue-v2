@@ -9,7 +9,7 @@
         </form>
       </div>
     </section>
-    <Cart />
+    <Cart :deliveryCost="formData.deliveryCost" />
     <section class="button">
       <button class="btn btn-prev first-step">上一步</button>
       <button class="btn btn-next first-step">下一步</button>
