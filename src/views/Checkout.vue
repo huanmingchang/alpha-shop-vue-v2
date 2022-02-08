@@ -67,14 +67,25 @@ export default {
   methods: {
     nextStep() {
       this.currentStep++
+
+      if (this.currentStep === 2) {
+        this.$router.push('/checkout/step2')
+      }
       if (this.currentStep >= 3) {
         this.currentStep = 3
+        this.$router.push('/checkout/step3')
       }
     },
     prevStep() {
-      this.currentStep -= 1
+      this.currentStep--
+      if (this.currentStep === 2) {
+        this.$router.push('/checkout/step2')
+      }
+
       if (this.currentStep <= 1) {
         this.currentStep = 1
+        this.$router.push('/checkout/step1')
+
         return
       }
     },

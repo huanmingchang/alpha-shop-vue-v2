@@ -1,17 +1,25 @@
 <template>
   <section class="stepper">
     <div class="stepper__container">
-      <div
-        class="stepper__container__step"
-        v-for="step in steps"
-        :key="step.id"
-        :class="step.status"
-      >
+      <div class="stepper__container__step" :class="steps[0].status">
         <div class="stepper__container__step--circle-container"></div>
         <div class="stepper__container__step--label-container">
-          {{ step.title }}
+          {{ steps[0].title }}
         </div>
         <span class="stepper__container__step--connect-line"></span>
+      </div>
+      <div class="stepper__container__step" :class="steps[1].status">
+        <div class="stepper__container__step--circle-container"></div>
+        <div class="stepper__container__step--label-container">
+          {{ steps[1].title }}
+        </div>
+        <span class="stepper__container__step--connect-line"></span>
+      </div>
+      <div class="stepper__container__step" :class="steps[2].status">
+        <div class="stepper__container__step--circle-container"></div>
+        <div class="stepper__container__step--label-container">
+          {{ steps[2].title }}
+        </div>
       </div>
     </div>
   </section>
@@ -47,6 +55,27 @@ export default {
         },
       ],
     }
+  },
+  watch: {
+    currentStep: {
+      handler: function () {
+        if (this.currentStep === 1) {
+          this.steps[0].status = 'initial'
+        }
+
+        if (this.currentStep === 2) {
+          this.steps[0].status = 'checked'
+          this.steps[1].status = 'active'
+        }
+
+        if (this.currentStep === 3) {
+          this.steps[0].status = 'checked'
+          this.steps[1].status = 'checked'
+          this.steps[2].status = 'active'
+        }
+      },
+      deep: true,
+    },
   },
 }
 </script>
