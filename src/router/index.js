@@ -14,6 +14,10 @@ const routes = [
   {
     path: '/checkout',
     name: 'checkout',
+    redirect: '/checkout/step1',
+  },
+  {
+    path: '/checkout/step1',
     component: Checkout,
     children: [
       {
@@ -33,7 +37,6 @@ const routes = [
       },
     ],
   },
-
   {
     path: '*',
     name: 'not-found',
