@@ -5,7 +5,11 @@
     <section class="form-panel">
       <div class="form-panel__container">
         <form class="form-panel__container__form">
-          <router-view />
+          <router-view
+            :initial-form-data="formData"
+            @formOneDataUpdate="formOneDataUpdate"
+            @formTwoDataUpdate="formTwoDataUpdate"
+          />
         </form>
       </div>
     </section>
@@ -55,7 +59,7 @@ export default {
         email: '',
         city: '',
         address: '',
-        delivery: '',
+        delivery: 'standard',
         deliveryCost: 0,
         cardName: '',
         cardNumber: '',
@@ -88,6 +92,19 @@ export default {
 
         return
       }
+    },
+    formOneDataUpdate(formOneData) {
+      this.formData.title = formOneData.title
+      this.formData.title = formOneData.title
+      this.formData.name = formOneData.name
+      this.formData.phone = formOneData.phone
+      this.formData.email = formOneData.email
+      this.formData.city = formOneData.city
+      this.formData.address = formOneData.address
+    },
+    formTwoDataUpdate(formTwoData) {
+      this.formData.delivery = formTwoData.delivery
+      this.formData.deliveryCost = formTwoData.deliveryCost
     },
   },
   filters: {
