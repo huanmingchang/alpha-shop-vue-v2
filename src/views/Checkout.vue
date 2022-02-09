@@ -9,6 +9,7 @@
             :initial-form-data="formData"
             @formOneDataUpdate="formOneDataUpdate"
             @formTwoDataUpdate="formTwoDataUpdate"
+            @formThreeDataUpdate="formThreeDataUpdate"
           />
         </form>
       </div>
@@ -26,20 +27,24 @@
         上一步
       </button>
       <button
+        v-if="currentStep !== 3"
         class="btn btn-next"
         :class="{
           'first-step': currentStep === 1,
-          'last-step': currentStep === 3,
         }"
         @click.stop.prevent="nextStep"
       >
-        {{ currentStep | buttonNext }}
+        下一步
       </button>
+      <modal v-else name="example" class="btn btn-next last-step"
+        >確認下單</modal
+      >
     </section>
   </main>
 </template>
 
 <script>
+import VModal from 'vue-js-modal'
 import Stepper from './../components/Stepper'
 import Cart from './../components/Cart'
 
@@ -106,10 +111,11 @@ export default {
       this.formData.delivery = formTwoData.delivery
       this.formData.deliveryCost = formTwoData.deliveryCost
     },
-  },
-  filters: {
-    buttonNext(value) {
-      return value === 3 ? '確認下單' : '下一步'
+    formThreeDataUpdate(formThreeData) {
+      this.formData.cardName = formThreeData.cardName
+      this.formData.cardNumber = formThreeData.cardNumber
+      this.formData.validity = formThreeData.validity
+      this.formData.cvc = formThreeData.cvc
     },
   },
 }

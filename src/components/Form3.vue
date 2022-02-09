@@ -13,6 +13,7 @@
           type="text"
           placeholder="John Doe"
           required
+          v-model="formData.cardName"
         />
       </div>
       <div
@@ -24,6 +25,7 @@
           type="text"
           placeholder="1111 2222 3333 4444"
           required
+          v-model="formData.cardNumber"
         />
       </div>
       <div
@@ -35,11 +37,18 @@
           type="text"
           placeholder="MM/YY"
           required
+          v-model="formData.validity"
         />
       </div>
       <div class="form-panel__container__form__form-part__forms__form-row cvc">
         <label for="">CVC / CCV</label>
-        <input id="creditcard-cvc" type="text" placeholder="123" required />
+        <input
+          id="creditcard-cvc"
+          type="text"
+          placeholder="123"
+          required
+          v-model="formData.cvc"
+        />
       </div>
     </div>
   </div>
@@ -48,5 +57,41 @@
 <script>
 export default {
   name: 'Form3',
+  props: {
+    initialFormData: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      formData: {
+        cardName: '',
+        cardNumber: '',
+        validity: '',
+        cvc: '',
+      },
+    }
+  },
+  methods: {
+    fetchFormData() {
+      this.formData.cardName = this.initialFormData.cardName
+      this.formData.cardNumber = this.initialFormData.cardNumber
+      this.formData.validity = this.initialFormData.validity
+      this.formData.cvc = this.initialFormData.cvc
+    },
+  },
+  created() {
+    this.fetchFormData()
+  },
+  watch: {
+    formData: {
+      handler: function (formThreeData) {
+        this.$emit('formThreeDataUpdate', formThreeData)
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
 }
 </script>
