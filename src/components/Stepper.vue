@@ -1,25 +1,22 @@
 <template>
   <section class="stepper">
     <div class="stepper__container">
-      <div class="stepper__container__step" :class="steps[0].status">
+      <div
+        v-for="step in steps"
+        :key="step.id"
+        class="stepper__container__step"
+        :class="step.status"
+      >
         <div class="stepper__container__step--circle-container"></div>
         <div class="stepper__container__step--label-container">
-          {{ steps[0].title }}
+          {{ step.title }}
         </div>
-        <span class="stepper__container__step--connect-line"></span>
-      </div>
-      <div class="stepper__container__step" :class="steps[1].status">
-        <div class="stepper__container__step--circle-container"></div>
-        <div class="stepper__container__step--label-container">
-          {{ steps[1].title }}
-        </div>
-        <span class="stepper__container__step--connect-line"></span>
-      </div>
-      <div class="stepper__container__step" :class="steps[2].status">
-        <div class="stepper__container__step--circle-container"></div>
-        <div class="stepper__container__step--label-container">
-          {{ steps[2].title }}
-        </div>
+        <span
+          class="stepper__container__step--connect-line"
+          :class="{
+            'last-connect-line': step.id === steps[steps.length - 1].id,
+          }"
+        ></span>
       </div>
     </div>
   </section>

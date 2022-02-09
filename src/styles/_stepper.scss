@@ -69,6 +69,10 @@
         }
       }
 
+      .last-connect-line {
+        display: none;
+      }
+
       &--label-container {
         @include mixin.fontStyles(1rem, 400, 1.5rem, var(--stepper-undone));
         display: none;
