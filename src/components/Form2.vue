@@ -108,10 +108,15 @@ export default {
       },
     }
   },
+  created() {
+    this.fetchFormData()
+  },
   methods: {
     fetchFormData() {
-      this.formData.delivery = this.initialFormData.delivery
-      this.formData.deliveryCost = this.initialFormData.deliveryCost
+      this.formData = {
+        ...this.formData,
+        ...this.initialFormData,
+      }
     },
     handleDelivery() {
       if (this.formData.delivery === 'standard') {
@@ -122,9 +127,6 @@ export default {
         this.formData.deliveryCost = 500
       }
     },
-  },
-  created() {
-    this.fetchFormData()
   },
   watch: {
     formData: {

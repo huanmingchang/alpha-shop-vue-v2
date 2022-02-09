@@ -91,6 +91,7 @@ import Stepper from './../components/Stepper'
 import Cart from './../components/Cart'
 
 const STORAGE_KEY = 'current-step'
+const FORM_DATA = 'form-data'
 
 export default {
   name: 'Checkout',
@@ -129,8 +130,6 @@ export default {
         this.currentStep = 3
         this.$router.push('/checkout/step3')
       }
-
-      console.log(this.$route)
     },
     prevStep() {
       this.currentStep--
@@ -146,23 +145,28 @@ export default {
       }
     },
     formOneDataUpdate(formOneData) {
-      this.formData.title = formOneData.title
-      this.formData.title = formOneData.title
-      this.formData.name = formOneData.name
-      this.formData.phone = formOneData.phone
-      this.formData.email = formOneData.email
-      this.formData.city = formOneData.city
-      this.formData.address = formOneData.address
+      this.formData = {
+        ...this.formData,
+        ...formOneData,
+      }
+
+      localStorage.setItem(FORM_DATA, JSON.stringify(this.formData))
     },
     formTwoDataUpdate(formTwoData) {
-      this.formData.delivery = formTwoData.delivery
-      this.formData.deliveryCost = formTwoData.deliveryCost
+      this.formData = {
+        ...this.formData,
+        ...formTwoData,
+      }
+
+      localStorage.setItem(FORM_DATA, JSON.stringify(this.formData))
     },
     formThreeDataUpdate(formThreeData) {
-      this.formData.cardName = formThreeData.cardName
-      this.formData.cardNumber = formThreeData.cardNumber
-      this.formData.validity = formThreeData.validity
-      this.formData.cvc = formThreeData.cvc
+      this.formData = {
+        ...this.formData,
+        ...formThreeData,
+      }
+
+      localStorage.setItem(FORM_DATA, JSON.stringify(this.formData))
     },
     handleTotal(total) {
       this.formData.totalPrice = total
@@ -180,6 +184,10 @@ export default {
     if (this.$route.name === 'checkout-step3') {
       this.currentStep = 3
     }
+  },
+  created() {
+    this.formData = JSON.parse(localStorage.getItem(FORM_DATA)) || this.formData
+    this.currentStep = JSON.parse(localStorage.getItem(STORAGE_KEY)) || 1
   },
   watch: {
     currentStep: {

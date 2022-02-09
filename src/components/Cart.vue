@@ -69,8 +69,11 @@ export default {
   name: 'Cart',
   props: {
     deliveryCost: {
-      type: [String, Number],
+      type: [Number, String, Object],
       required: true,
+      default: () => ({
+        deliveryCost: 0,
+      }),
     },
   },
   data() {

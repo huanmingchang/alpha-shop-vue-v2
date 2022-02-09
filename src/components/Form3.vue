@@ -75,10 +75,10 @@ export default {
   },
   methods: {
     fetchFormData() {
-      this.formData.cardName = this.initialFormData.cardName
-      this.formData.cardNumber = this.initialFormData.cardNumber
-      this.formData.validity = this.initialFormData.validity
-      this.formData.cvc = this.initialFormData.cvc
+      this.formData = {
+        ...this.formData,
+        ...this.initialFormData,
+      }
     },
   },
   created() {

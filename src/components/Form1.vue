@@ -114,12 +114,10 @@ export default {
   },
   methods: {
     fetchFormData() {
-      this.formData.title = this.initialFormData.title
-      this.formData.name = this.initialFormData.name
-      this.formData.phone = this.initialFormData.phone
-      this.formData.email = this.initialFormData.email
-      this.formData.city = this.initialFormData.city
-      this.formData.address = this.initialFormData.address
+      this.formData = {
+        ...this.formData,
+        ...this.initialFormData,
+      }
     },
   },
   created() {
