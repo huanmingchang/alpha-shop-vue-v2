@@ -14,7 +14,7 @@
         </form>
       </div>
     </section>
-    <Cart :delivery-cost="formData.deliveryCost" />
+    <Cart :delivery-cost="formData.deliveryCost" @handleTotal="handleTotal" />
     <section class="button">
       <button
         class="btn btn-prev"
@@ -36,15 +36,57 @@
       >
         下一步
       </button>
-      <modal v-else name="example" class="btn btn-next last-step"
-        >確認下單</modal
+      <button
+        v-else
+        data-toggle="modal"
+        data-target="#confirmOrder"
+        class="btn btn-next last-step"
       >
+        確認下單
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="confirmOrder"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="confirmOrder"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>{</p>
+              <p v-for="(value, name) in formData" :key="name">
+                {{ name }} : {{ value }}
+              </p>
+              <p>}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                取消
+              </button>
+              <button type="button" class="btn btn-primary">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </template>
 
 <script>
-import VModal from 'vue-js-modal'
 import Stepper from './../components/Stepper'
 import Cart from './../components/Cart'
 
@@ -70,6 +112,7 @@ export default {
         cardNumber: '',
         validity: '',
         cvc: '',
+        totalPrice: 0,
       },
     }
   },
@@ -116,6 +159,9 @@ export default {
       this.formData.cardNumber = formThreeData.cardNumber
       this.formData.validity = formThreeData.validity
       this.formData.cvc = formThreeData.cvc
+    },
+    handleTotal(total) {
+      this.formData.totalPrice = total
     },
   },
 }

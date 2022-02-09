@@ -135,5 +135,14 @@ export default {
       return this.deliveryCost + total
     },
   },
+  watch: {
+    calculateTotal: {
+      handler: function (total) {
+        this.$emit('handleTotal', total)
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
 }
 </script>
