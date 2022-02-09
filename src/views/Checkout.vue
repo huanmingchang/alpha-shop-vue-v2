@@ -1,7 +1,11 @@
 <template>
   <main class="main">
     <div class="main__title">結帳</div>
+
+    <!-- Stepper -->
     <Stepper :current-step="currentStep" />
+
+    <!-- Form -->
     <section class="form-panel">
       <div class="form-panel__container">
         <form class="form-panel__container__form">
@@ -14,7 +18,11 @@
         </form>
       </div>
     </section>
+
+    <!-- Cart -->
     <Cart :delivery-cost="formData.deliveryCost" @handleTotal="handleTotal" />
+
+    <!-- Buttons -->
     <section class="button">
       <button
         class="btn btn-prev"
@@ -67,6 +75,7 @@
               </button>
             </div>
             <div class="modal-body">
+              <!-- 用 v-for 呈現 formData 內容，顯示在 modal 上 -->
               <p>{</p>
               <p v-for="(value, name) in formData" :key="name">
                 {{ name }} : {{ value }}
@@ -149,7 +158,6 @@ export default {
         ...this.formData,
         ...formOneData,
       }
-
       localStorage.setItem(FORM_DATA, JSON.stringify(this.formData))
     },
     formTwoDataUpdate(formTwoData) {
@@ -157,7 +165,6 @@ export default {
         ...this.formData,
         ...formTwoData,
       }
-
       localStorage.setItem(FORM_DATA, JSON.stringify(this.formData))
     },
     formThreeDataUpdate(formThreeData) {
@@ -165,7 +172,6 @@ export default {
         ...this.formData,
         ...formThreeData,
       }
-
       localStorage.setItem(FORM_DATA, JSON.stringify(this.formData))
     },
     handleTotal(total) {
@@ -173,6 +179,7 @@ export default {
     },
   },
   updated() {
+    // 控制直接輸入網址所導向的頁面
     if (this.$route.name === 'checkout-step1') {
       this.currentStep = 1
     }
@@ -190,6 +197,7 @@ export default {
     this.currentStep = JSON.parse(localStorage.getItem(STORAGE_KEY)) || 1
   },
   watch: {
+    // 如果 currentStep 有變化，儲存在 localStorage 裡面
     currentStep: {
       handler: function () {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(this.currentStep))

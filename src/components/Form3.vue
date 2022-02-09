@@ -65,12 +65,7 @@ export default {
   },
   data() {
     return {
-      formData: {
-        cardName: '',
-        cardNumber: '',
-        validity: '',
-        cvc: '',
-      },
+      formData: {},
     }
   },
   methods: {
@@ -85,6 +80,7 @@ export default {
     this.fetchFormData()
   },
   watch: {
+    // 輸入資料之後往父組件傳送
     formData: {
       handler: function (formThreeData) {
         this.$emit('formThreeDataUpdate', formThreeData)

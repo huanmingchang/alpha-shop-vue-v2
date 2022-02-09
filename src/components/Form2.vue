@@ -102,10 +102,7 @@ export default {
   },
   data() {
     return {
-      formData: {
-        delivery: 'standard',
-        deliveryCost: 0,
-      },
+      formData: {},
     }
   },
   created() {
@@ -118,6 +115,7 @@ export default {
         ...this.initialFormData,
       }
     },
+    // 計算運費
     handleDelivery() {
       if (this.formData.delivery === 'standard') {
         this.formData.deliveryCost = 0
@@ -129,6 +127,7 @@ export default {
     },
   },
   watch: {
+    // 輸入資料之後往父組件傳送
     formData: {
       handler: function (formTwoData) {
         this.$emit('formTwoDataUpdate', formTwoData)

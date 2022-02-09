@@ -102,14 +102,7 @@ export default {
         '台南市',
         '高雄市',
       ],
-      formData: {
-        title: '',
-        name: '',
-        phone: '',
-        email: '',
-        city: '',
-        address: '',
-      },
+      formData: {},
     }
   },
   methods: {
@@ -124,6 +117,7 @@ export default {
     this.fetchFormData()
   },
   watch: {
+    // 輸入資料之後往父組件傳送
     formData: {
       handler: function (formOneData) {
         this.$emit('formOneDataUpdate', formOneData)

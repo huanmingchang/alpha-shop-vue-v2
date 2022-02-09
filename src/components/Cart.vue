@@ -117,12 +117,14 @@ export default {
     },
   },
   filters: {
+    // 把數字加上千分位逗號
     addComma: function (value) {
-      if (!value) return '0'
+      if (!value) return '$0'
       return (
         '$' + value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
       )
     },
+    // 依照運費金額顯示免費或是運費價錢
     filterFreightCost: function (value) {
       return value === 0
         ? '免費'
@@ -130,6 +132,7 @@ export default {
     },
   },
   computed: {
+    // 計算總金額
     calculateTotal: function () {
       const total = this.carts.reduce((accu, curr) => {
         return accu.price * accu.qty + curr.price * curr.qty
@@ -139,6 +142,7 @@ export default {
     },
   },
   watch: {
+    // 監聽總金額變化並往父組件送
     calculateTotal: {
       handler: function (total) {
         this.$emit('handleTotal', total)

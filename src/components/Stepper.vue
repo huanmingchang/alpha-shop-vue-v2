@@ -54,6 +54,7 @@ export default {
     }
   },
   watch: {
+    // 監聽 currentStep 來做 css 的變化
     currentStep: {
       handler: function () {
         if (this.currentStep === 1) {
