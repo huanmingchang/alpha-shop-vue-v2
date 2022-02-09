@@ -90,6 +90,8 @@
 import Stepper from './../components/Stepper'
 import Cart from './../components/Cart'
 
+const STORAGE_KEY = 'current-step'
+
 export default {
   name: 'Checkout',
   components: {
@@ -98,7 +100,7 @@ export default {
   },
   data() {
     return {
-      currentStep: 1,
+      currentStep: JSON.parse(localStorage.getItem(STORAGE_KEY)),
       formData: {
         title: '',
         name: '',
@@ -127,6 +129,8 @@ export default {
         this.currentStep = 3
         this.$router.push('/checkout/step3')
       }
+
+      console.log(this.$route)
     },
     prevStep() {
       this.currentStep--
@@ -162,6 +166,26 @@ export default {
     },
     handleTotal(total) {
       this.formData.totalPrice = total
+    },
+  },
+  updated() {
+    if (this.$route.name === 'checkout-step1') {
+      this.currentStep = 1
+    }
+
+    if (this.$route.name === 'checkout-step2') {
+      this.currentStep = 2
+    }
+
+    if (this.$route.name === 'checkout-step3') {
+      this.currentStep = 3
+    }
+  },
+  watch: {
+    currentStep: {
+      handler: function () {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.currentStep))
+      },
     },
   },
 }
