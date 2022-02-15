@@ -6,6 +6,7 @@
 @use 'footer';
 
 @use 'mixin';
+@use 'include-media';
 @import 'include-media';
 
 .app {
